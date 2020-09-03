@@ -29,7 +29,7 @@ async function main() {
     .find("a")
     .each((_, el) => {
       const $el = $(el);
-      console.log($el.attr("href"));
+      // console.log($el.attr("href"));
       setTimeout(() => {
         getSetData(baseUrl + $el.attr("href"));
       }, 0 + offset);
