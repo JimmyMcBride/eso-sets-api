@@ -73,7 +73,7 @@ async function getSetData(url) {
     const added = await db("sets")
       .insert({
         name,
-        type,
+        type: type === "Crafted Sets" ? "Crafted Set" : type,
         weight,
         bonuses,
       })

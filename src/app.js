@@ -24,7 +24,7 @@ async function main() {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
   let offset = 0;
-  $('h3:contains("A")')
+  $('h3:contains("B")')
     .next()
     .find("a")
     .each((_, el) => {
