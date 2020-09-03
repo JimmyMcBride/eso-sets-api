@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const db = require("./data/dbConfig");
+// const db = require("./data/dbConfig");
 const getSetData = require("./getSetData");
 
 // const hideOfMorihaus = "https://en.uesp.net/wiki/Online:Hide_of_Morihaus";
