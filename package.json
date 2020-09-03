@@ -1,0 +1,22 @@
+{
+  "name": "eso-datascraper",
+  "version": "1.0.0",
+  "description": "A datascraper for eso wiki",
+  "main": "src/app.js",
+  "repository": "git@github.com:JimmyMcBride/eso-datascraper.git",
+  "author": "JimmyMcBride <mcbride967@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node src/app.js",
+    "refresh": "knex migrate:rollback && knex migrate:latest",
+    "restart": "yarn refresh && yarn start"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.5",
+    "pg": "^8.3.3"
+  }
+}
