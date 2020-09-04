@@ -36,6 +36,17 @@ app.get("/sets", async (_, res) => {
   res.status(200).json(sets);
 });
 
+app.get("/set/:name", async (req, res) => {
+  const { name } = req.params;
+  try {
+    const set = await db("sets").where({ name }).first();
+    if (!set) throw new Error("No set with that name can be found 🤷‍♂");
+    res.status(200).json(set);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
 server.applyMiddleware({
   app,
   cors: {

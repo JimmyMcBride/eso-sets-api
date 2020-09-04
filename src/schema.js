@@ -1,6 +1,7 @@
 const typeDefs = `
   type Query {
     sets: [Set!]!
+    set(name: String!): Set!
   }
   type Set {
     id: ID!
