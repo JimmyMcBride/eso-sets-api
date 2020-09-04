@@ -18,13 +18,17 @@ const getSetData = require("./getSetData");
 // ];
 
 const baseUrl = "https://en.uesp.net";
-const url = "https://en.uesp.net/wiki/Category:Online-Sets";
+const page1 = "https://en.uesp.net/wiki/Category:Online-Sets";
+const page2 =
+  "https://en.uesp.net/w/index.php?title=Category:Online-Sets&pagefrom=Kraglen%E2%80%99s+Howl#mw-pages";
+const page3 =
+  "https://en.uesp.net/w/index.php?title=Category:Online-Sets&pagefrom=Stendarr%27s+Embrace#mw-pages";
 
 async function main() {
-  const { data } = await axios.get(url);
+  const { data } = await axios.get(page3);
   const $ = cheerio.load(data);
   let offset = 0;
-  $('h3:contains("B")')
+  $('h3:contains("Z")')
     .next()
     .find("a")
     .each((_, el) => {
@@ -42,4 +46,4 @@ async function main() {
   // });
 }
 
-main();
+// main(;

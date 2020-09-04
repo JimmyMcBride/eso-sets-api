@@ -3,7 +3,7 @@ exports.up = function (knex) {
     tbl.increments();
     tbl.text("name").notNullable();
     tbl.text("type").notNullable();
-    tbl.text("weight").notNullable();
+    // tbl.text("weight").notNullable();
     tbl.text("bonuses").notNullable();
   });
 };

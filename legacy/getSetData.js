@@ -39,7 +39,7 @@ async function getSetData(url) {
         if (string.includes("-")) {
           return string.split("-")[1];
         }
-        return string.replace("items", "piece");
+        return string.replace("items", "piece").replace("item", "piece");
       });
       // pushing modded strings to array
       bonusArray.push(newEl.join(" "));
@@ -73,8 +73,8 @@ async function getSetData(url) {
     const added = await db("sets")
       .insert({
         name,
-        type: type === "Crafted Sets" ? "Crafted Set" : type,
-        weight,
+        type,
+        // weight,
         bonuses,
       })
       .returning("*");
