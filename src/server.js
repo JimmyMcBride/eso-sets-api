@@ -1,13 +1,17 @@
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
+const path = require("path");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 const db = require("./data/dbConfig");
+const cors = require("cors");
 
 require("dotenv").config();
 
 const app = express();
+
+app.use(cors());
 
 const server = new ApolloServer({
   typeDefs,
@@ -28,7 +32,7 @@ const welcomeMessage = `
 `;
 
 app.get("/", async (_, res) => {
-  res.send(welcomeMessage);
+  res.sendFile(path.join(__dirname + "/view/index.html"));
 });
 
 app.get("/sets", async (_, res) => {

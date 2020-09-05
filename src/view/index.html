@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESO Sets</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <h1>ESO Set Library</h1>
+
+  <body style="display: flex; flex-direction: column; align-items: center;">
+    <h2>Server is up and running!</h2>
+    <p>ESO GQL API is located at <a href="/graphql">/graphql</a></p>
+    <div id="app">
+      {{ sets }}
+    </div>
+  </body>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      sets: null
+    },
+    mounted() {
+      fetch('https://eso-sets.herokuapp.com/sets')
+        .then(res => (this.sets = res))
+    }
+  })
+</script>
+
+</html>
