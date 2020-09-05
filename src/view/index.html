@@ -13,24 +13,13 @@
 
   <body style="display: flex; flex-direction: column; align-items: center;">
     <h2>Server is up and running!</h2>
-    <p>ESO GQL API is located at <a href="/graphql">/graphql</a></p>
-    <div id="app">
-      {{ sets }}
-    </div>
+    <p><strong style="font-size: 18px;">ESO GQL API</strong> is located at <a href="/graphql">/graphql</a></p>
+    <p><strong style="font-size: 18px;">ESO REST API</strong> has 2 endpoints.</p>
+    <ul>
+      <li><strong>Get all sets:</strong> <a href="/sets">`/sets`</a></li>
+      <li><strong>Get set by name:</strong> <a href="/set/Zaan">`/sets/:name`</a> (Zaan)</li>
+    </ul>
   </body>
 </body>
-
-<script>
-  new Vue({
-    el: '#app',
-    data: {
-      sets: null
-    },
-    mounted() {
-      fetch('https://eso-sets.herokuapp.com/sets')
-        .then(res => (this.sets = res))
-    }
-  })
-</script>
 
 </html>
