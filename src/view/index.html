@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESO Sets</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -13,13 +14,98 @@
 
   <body style="display: flex; flex-direction: column; align-items: center;">
     <h2>Server is up and running!</h2>
+    <p>All this data has been gather from <a href="https://eso-sets.com">eso-sets.com</a> thanks to <a
+        href="https://woeler.tech/">Woeler</a>.</p>
     <p><strong style="font-size: 18px;">ESO GQL API</strong> is located at <a href="/graphql">/graphql</a></p>
     <p><strong style="font-size: 18px;">ESO REST API</strong> has 2 endpoints.</p>
     <ul>
       <li><strong>Get all sets:</strong> <a href="/sets">`/sets`</a></li>
       <li><strong>Get set by name:</strong> <a href="/set/Zaan">`/sets/:name`</a> (Zaan)</li>
     </ul>
+    <h3>Example:</h3>
+    <div class="vue">
+      <div class="name">Name: {{set.name}}</div>
+      <div class="type">Type: {{set.type}}</div>
+      <div v-html="set.bonuses"></div>
+    </div>
   </body>
 </body>
+
+<script>
+  new Vue({
+    el: ".vue",
+    data() {
+      return {
+        set: null
+      }
+    },
+    mounted() {
+      axios.get("https://eso-sets.herokuapp.com/set/Amber Plasm").then(res => this.set = res.data)
+    }
+  })
+</script>
+
+<style>
+  .health {
+    color: crimson;
+  }
+
+  .stamina {
+    color: green;
+  }
+
+  .magicka {
+    color: dodgerblue;
+  }
+
+  .armor {
+    color: rgb(185, 198, 207);
+  }
+
+  .weapon {
+    color: rgb(81, 129, 81);
+  }
+
+  .spell {
+    color: rgb(147, 197, 248);
+  }
+
+  .s-pen {
+    color: rgb(190, 171, 171);
+  }
+
+  .p-pen {
+    color: rgb(158, 171, 184);
+  }
+
+  .debuff {
+    color: rgb(209, 116, 116);
+  }
+
+  .buff {
+    color: rgb(185, 164, 94);
+  }
+
+  .type {
+    color: #d7ccc8;
+  }
+
+  .vue {
+    width: 350px;
+    background: #222;
+    color: #fafafa;
+    border-radius: 5px;
+    padding: 25px;
+  }
+
+  .name-wrapper {
+    font-size: 18px;
+    display: flex;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+</style>
 
 </html>

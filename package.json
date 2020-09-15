@@ -11,16 +11,21 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "refresh": "knex migrate:rollback && knex migrate:latest",
-    "restart": "yarn refresh && yarn start"
+    "restart": "yarn refresh && yarn start",
+    "scrape": "node src/scrapper"
   },
   "dependencies": {
     "apollo-server-express": "^2.17.0",
     "axios": "^0.20.0",
+    "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.3",
+    "connect-redis": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "graphql": "^15.3.0",
+    "ioredis": "^4.17.3",
     "knex": "^0.21.5",
     "nodemon": "^2.0.4",
     "pg": "^8.3.3"
