@@ -23,17 +23,44 @@
       <li><strong>Get set by name:</strong> <a href="/set/Zaan">`/sets/:name`</a> (Zaan)</li>
     </ul>
     <h3>Example:</h3>
-    <div class="vue">
-      <div class="name">Name: {{set.name}}</div>
-      <div class="type">Type: {{set.type}}</div>
-      <div v-html="set.bonuses"></div>
-    </div>
+    <a id="zaan" class="eso-set" v-bind:href="set.link">
+      <div class="name">{{set.name}}</div>
+      <div class="separator"></div>
+      <div class="type"><strong>Type: </strong><span>{{set.type}}</span></div>
+      <div class="separator"></div>
+      <div class="bonuses" v-html="set.bonuses"></div>
+    </a>
+    <a id="amber-plasm" class="eso-set" v-bind:href="set.link">
+      <div class="name">{{set.name}}</div>
+      <div class="separator"></div>
+      <div class="type"><strong>Type: </strong><span>{{set.type}}</span></div>
+      <div class="separator"></div>
+      <div class="bonuses" v-html="set.bonuses"></div>
+    </a>
+    <a id="mothers-sorrow" class="eso-set" v-bind:href="set.link">
+      <div class="name">{{set.name}}</div>
+      <div class="separator"></div>
+      <div class="type"><strong>Type: </strong><span>{{set.type}}</span></div>
+      <div class="separator"></div>
+      <div class="bonuses" v-html="set.bonuses"></div>
+    </a>
   </body>
 </body>
 
 <script>
   new Vue({
-    el: ".vue",
+    el: "#zaan",
+    data() {
+      return {
+        set: null
+      }
+    },
+    mounted() {
+      axios.get("https://eso-sets.herokuapp.com/set/Zaan").then(res => this.set = res.data)
+    }
+  })
+  new Vue({
+    el: "#amber-plasm",
     data() {
       return {
         set: null
@@ -43,9 +70,115 @@
       axios.get("https://eso-sets.herokuapp.com/set/Amber Plasm").then(res => this.set = res.data)
     }
   })
+  new Vue({
+    el: "#mothers-sorrow",
+    data() {
+      return {
+        set: null
+      }
+    },
+    mounted() {
+      axios.get("https://eso-sets.herokuapp.com/set/Mother's Sorrow").then(res => this.set = res.data)
+    }
+  })
 </script>
 
 <style>
+  .eso-set {
+    text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    align-content: stretch;
+    height: 100%;
+    width: 96%;
+    max-width: 350px;
+    max-height: none;
+    box-sizing: border-box;
+    color: rgb(245, 245, 245);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 5px 8px 0px, rgba(0, 0, 0, 0.12) 0px 1px 14px 0px;
+    text-align: center;
+    margin: 16px;
+    padding: 16px;
+    background: rgb(33, 33, 33);
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 5px;
+  }
+
+  .type {
+    height: auto;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    box-sizing: border-box;
+    box-shadow: none;
+    clip-path: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 1px;
+  }
+
+  .type span {
+    color: #BCAAA4;
+  }
+
+  .separator {
+    height: 1px;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    box-sizing: border-box;
+    box-shadow: none;
+    clip-path: none;
+    margin: 5px 0;
+    padding: 0px;
+    background: rgb(255, 236, 179);
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 1px;
+  }
+
+  .name {
+    height: auto;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    box-sizing: border-box;
+    color: rgb(255, 193, 7);
+    box-shadow: none;
+    clip-path: none;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 1px;
+  }
+
+  .bonuses {
+    margin-bottom: 10px;
+  }
+
   .health {
     color: crimson;
   }
@@ -84,27 +217,6 @@
 
   .buff {
     color: rgb(185, 164, 94);
-  }
-
-  .type {
-    color: #d7ccc8;
-  }
-
-  .vue {
-    width: 350px;
-    background: #222;
-    color: #fafafa;
-    border-radius: 5px;
-    padding: 25px;
-  }
-
-  .name-wrapper {
-    font-size: 18px;
-    display: flex;
-  }
-
-  .name {
-    font-size: 20px;
   }
 </style>
 
